@@ -1,4 +1,7 @@
+import { UsuarioService } from './usuario.service';
 import { Component } from '@angular/core';
+import {ButtonModule} from 'primeng/button';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'revisao';
+
+  constructor(private usuario: UsuarioService){
+
+  }
 }
