@@ -1,6 +1,7 @@
 import { UsuarioService } from './usuario.service';
 import { Component } from '@angular/core';
 import {ButtonModule} from 'primeng/button';
+import { LocationStrategy } from '@angular/common';
 
 
 @Component({
@@ -10,8 +11,17 @@ import {ButtonModule} from 'primeng/button';
 })
 export class AppComponent {
   title = 'revisao';
+  retorno:any;
 
   constructor(private usuario: UsuarioService){
+
+  }
+
+
+  listar(): void{
+    this.usuario.getAll().subscribe({
+      next: (retorno) => this.retorno = retorno;
+    })
 
   }
 }
