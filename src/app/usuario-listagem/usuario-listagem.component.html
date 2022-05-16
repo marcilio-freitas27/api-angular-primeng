@@ -1,1 +1,20 @@
-<p>usuario-listagem works!</p>
+<p-table [value]="usuarios" responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>First_Name</th>
+          <th>Last_Name</th>
+          <th>Avatar</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-usuario>
+      <tr>
+          <td>{{usuario.id}}</td>
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.first_name}}</td>
+          <td>{{usuario.last_name}}</td>
+          <td>{{usuario.avatar}}</td>
+      </tr>
+  </ng-template>
+</p-table>
