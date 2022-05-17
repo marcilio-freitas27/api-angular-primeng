@@ -20,9 +20,8 @@ import { UsuarioDetalheComponent } from './usuario-detalhe/usuario-detalhe.compo
     AppRoutingModule,
     ButtonModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
