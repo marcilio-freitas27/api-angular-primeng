@@ -13,13 +13,15 @@ export class UsuarioService {
   }
 
   getAll(): Observable<Usuario[]>{
-    return this.http.get(`${this.url}?per_page=12`).pipe(
+    return this.http.get<Usuario>(`${this.url}?per_page=12`).pipe(
       map((retorno: any) => retorno.data)
     );
   }
 
-  getOne(nome: string): Observable<any>{
-    return this.http.get(`${this.url}?first_name=${nome}`);
+  getOne(id:number): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.url}/${id}`).pipe(
+      map((retorno: any) => retorno.data)
+    );
   }
 
 }

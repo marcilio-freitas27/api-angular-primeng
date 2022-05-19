@@ -1,6 +1,7 @@
 import { UsuarioService } from './../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-listagem',
@@ -10,8 +11,9 @@ import { Usuario } from '../usuario';
 export class UsuarioListagemComponent implements OnInit {
 
   usuarios: Usuario[];
+  usuarioSelecionado?: Usuario;
 
-  constructor(private usuario: UsuarioService) {
+  constructor(private usuario: UsuarioService, private router:Router) {
     this.usuarios = [];
   }
 
@@ -20,6 +22,10 @@ export class UsuarioListagemComponent implements OnInit {
       next: (retorno: Usuario[]) => this.usuarios = retorno
     });
 
+  }
+
+  onRowSelect(event: any): void {
+    this.router.navigate(['/detalhe', this.usuarioSelecionado?.id]);
   }
 
 }

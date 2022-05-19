@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
@@ -18,6 +19,7 @@ import { UsuarioDetalheComponent } from './usuario-detalhe/usuario-detalhe.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     ButtonModule,
     TableModule,
     HttpClientModule,
