@@ -25,7 +25,7 @@ export class UsuarioListagemComponent implements OnInit {
   }
 
   onRowSelect(event: any): void {
-    this.router.navigate(['/detalhe', this.usuarioSelecionado?.id]);
+    this.router.navigate(['/detalhe', this.usuarioSelecionado!.id]);
   }
 
 }

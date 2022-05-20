@@ -1,5 +1,6 @@
 <p-table [value]="usuarios" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
-currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]" selectionMode="single" [(selection)]="usuarioSelecionado" dataKey="id" (onRowSelect)="onRowSelect($event)">
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]" selectionMode="single"
+[(selection)]="usuarioSelecionado" dataKey="id" (onRowSelect)="onRowSelect($event)">
   <ng-template pTemplate="header">
       <tr>
           <th>ID</th>
@@ -10,7 +11,8 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-usuario>
-      <tr pSelectableRow="usuario">
+    <!--Faltou apenas o [] - properrty bind-->
+      <tr [pSelectableRow]="usuario">
           <td>{{usuario.id}}</td>
           <td>{{usuario.email}}</td>
           <td>{{usuario.first_name}}</td>
