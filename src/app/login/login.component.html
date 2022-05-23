@@ -1,0 +1,18 @@
+<h1>Login no sistema</h1>
+
+<form (ngSubmit)="onSubmit()">
+  <p>
+    Login:
+    <input name="usuario" type="text" pInputText />
+    <!-- [(NgModel)]="usuario" -->
+  </p>
+  <p>
+    Password
+    <p-password name="senha" ></p-password>
+    <!-- [(NgModel)]="senha" -->
+  </p>
+
+  <p>
+    <p-button icon="pi pi-iconName" label="Enviar"></p-button>
+  </p>
+</form>

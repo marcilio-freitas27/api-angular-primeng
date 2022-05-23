@@ -24,6 +24,7 @@ export class UsuarioListagemComponent implements OnInit {
 
   }
 
+  //acessando rota de uma página(componente) através do router.navigate
   onRowSelect(event: any): void {
     this.router.navigate(['/detalhe', this.usuarioSelecionado!.id]);
   }

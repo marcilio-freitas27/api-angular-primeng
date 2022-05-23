@@ -3,18 +3,23 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UsuarioListagemComponent } from './usuario-listagem/usuario-listagem.component';
 import { UsuarioDetalheComponent } from './usuario-detalhe/usuario-detalhe.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuarioListagemComponent,
-    UsuarioDetalheComponent
+    UsuarioDetalheComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +28,9 @@ import { UsuarioDetalheComponent } from './usuario-detalhe/usuario-detalhe.compo
     ButtonModule,
     TableModule,
     HttpClientModule,
+    InputTextModule,
+    PasswordModule,
+    FormsModule
   ],
   bootstrap: [AppComponent]
 })
