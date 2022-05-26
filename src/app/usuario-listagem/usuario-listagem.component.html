@@ -1,3 +1,4 @@
+<button pButton (click)="onLogoff()">Sair</button>
 <p-table [value]="usuarios" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]" selectionMode="single"
 [(selection)]="usuarioSelecionado" dataKey="id" (onRowSelect)="onRowSelect($event)">

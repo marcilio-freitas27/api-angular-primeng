@@ -22,4 +22,9 @@ export class LoginService {
       return false;
     }
   }
+
+  onLogout(): boolean {
+    localStorage.clear();
+    return true;
+  }
 }
