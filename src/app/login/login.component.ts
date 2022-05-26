@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from './../login.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +11,21 @@ export class LoginComponent implements OnInit {
 
   usuario = '';
   senha = '';
-  constructor() { }
+  mensagemErro = '';
+  constructor(private loginService: LoginService, private route: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit():void {
-    console.log('Tentou logar no sistema...')
-    console.log(`Usuario: ${this.usuario}`)
-    console.log(`Senha: ${this.senha}`)
+    this.mensagemErro = '';
+    if(this.loginService.onLogin(this.usuario, this.senha)){
+      //redireciona para a raiz
+      this.route.navigate(['/']);
+    }else{
+      this.mensagemErro = 'Usuário ou senha incorretos';
+    }
+
   }
 
 }
