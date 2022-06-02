@@ -1,0 +1,7 @@
+localhost
+
+autenticação do sql server
+
+sa
+
+Sql2@19
