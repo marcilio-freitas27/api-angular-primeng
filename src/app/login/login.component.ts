@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './../login.service';
-import { Router, RouterModule } from '@angular/router';
-
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,18 +12,26 @@ export class LoginComponent implements OnInit {
   usuario = '';
   senha = '';
   mensagemErro = '';
-  constructor(private loginService: LoginService, private route: Router) { }
+  constructor(private loginService: LoginService, private route: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit():void {
-    this.mensagemErro = '';
+  showSuccess(mensagem: string) {
+    this.toastr.success(mensagem);
+  }
+
+  showError(mensagem: string) {
+    this.toastr.error(mensagem);
+  }
+
+  onSubmit(): void{
     if(this.loginService.onLogin(this.usuario, this.senha)){
       //redireciona para a raiz
       this.route.navigate(['/']);
-    }else{
-      this.mensagemErro = 'Usuário ou senha incorretos';
+      this.showSuccess(`Bem vindo ${this.usuario}`);;
+    }else {
+      this.showError('Usuario ou senha incorretos.');
     }
 
   }

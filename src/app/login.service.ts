@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from './usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +10,16 @@ export class LoginService {
   onLogin(usuario: string, senha: string): boolean {
     if(usuario === 'admin' && senha === '1234'){
       localStorage.setItem('usuario', usuario);
+      return true;
     }
-    return true;
+    return false;
   }
 
   isAuthenticated(): boolean{
     if (localStorage.getItem('usuario')){
       return true;
-    }else {
-      return false;
     }
+    return false;
   }
 
   onLogout(): boolean {

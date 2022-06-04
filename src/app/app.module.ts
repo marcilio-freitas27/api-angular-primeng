@@ -13,6 +13,8 @@ import { UsuarioListagemComponent } from './usuario-listagem/usuario-listagem.co
 import { UsuarioDetalheComponent } from './usuario-detalhe/usuario-detalhe.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,10 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     InputTextModule,
     PasswordModule,
-    FormsModule
+    FormsModule,
+    // BrowserAnimationsModule no longer required
+    ToastNoAnimationModule.forRoot(),
+    ToastrModule.forRoot(),
   ],
   bootstrap: [AppComponent]
 })

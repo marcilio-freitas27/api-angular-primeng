@@ -1,18 +1,38 @@
 const express = require('express');
 const { get } = require('http');
+const bodyParser = require('body-parser');
 
 // permite via js, no navegador, acesso a outros domínios. Usar api de outros domínios, acesso entre domínios
 const cors = require('cors');
 const app = express();
+var usuarios = [];
 
 // extenção do chrome: json-handle
 
-app.get('/', (req , res) =>{
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', (req , res) => {
   res.send('{ "mensagem": "Hello World!" }');
 })
 
+app.post('/inserir', (req , res) => {
+  var {
+    id,
+    email,
+    nome,
+    sobrenome
+  } = req.body;
+
+  res.send(usuarios.push({
+    id,
+    email,
+    nome,
+    sobrenome
+  }));
+})
+
 app.get('/usuario',(req , res) =>{
-  var usuarios = [];
   usuarios.push({
     id: 1,
     email:'',
