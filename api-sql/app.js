@@ -20,6 +20,9 @@ const mssql = require('mssql/msnodesqlv8');
 //   });
 // })
 
+app.use(express.json());
+// app.use(express.urlencode())
+
 const conn = new mssql.ConnectionPool({
     driver: "msnodesqlv8",
     // server: 'SQLEXPRESS',
@@ -49,10 +52,26 @@ app.get('/cliente', (req, res) => {
 
 app.delete('/cliente/:id', (req, res) => {
   conn.connect().then((pool) => {
+    const id = req.params.id;
     const queryStr = `DELETE FROM Clientes WHERE Codigo = ${id}`
     // const queryStr = 'SELECT * FROM produto'
     pool.query(queryStr).then((rows) => {
       res.status(204).send('ok')
+    })
+  })
+})
+
+app.post('/cliente', (req, res) => {
+  const {
+    codigo,
+    nome,
+    email
+  } = req.body;
+  conn.connect().then((pool) => {
+    const queryStr = `INSERT INTO Clientes (Codigo, Nome, Email) VALUES(${codigo}, ${nome}, ${email})`
+    // const queryStr = 'SELECT * FROM produto'
+    pool.query(queryStr).then((rows) => {
+      res.status(201).send(rows.recordset)
     })
   })
 })
@@ -62,8 +81,32 @@ app.get('/cliente/:id', (req, res) => {
   conn.connect().then((pool) => {
     const queryStr = `SELECT * FROM Clientes WHERE Codigo = ${id}`
     // const queryStr = 'SELECT * FROM produto'
-    pool.query(queryStr).then((rows) => {  
-      res.send(200).status(rows.recordset);
+    pool.query(queryStr).then((rows) => {
+      if(rows.recordset.length > 0){
+        res.send(rows.recordset[0]);
+      }else {
+        res.send(404).status(rows.recordset);
+      }
+    })
+  })
+})
+
+app.put('/cliente/:id', (req, res) => {
+  const codigo = req.params.id;
+  const {
+    nome,
+    email
+  } = req.body;
+  conn.connect().then((pool) => {
+    const queryStr = `UPDATE Clentes SET Codigo = ${codigo}, 
+    Nome = ${nome}, Email = ${email} WHERE Codigo = ${codigo}`
+    // const queryStr = 'SELECT * FROM produto'
+    pool.query(queryStr).then((rows) => {
+      if(rows.recordset.length > 0){
+        res.send(rows.recordset[0]);
+      }else {
+        res.send(404).status(rows.recordset);
+      }
     })
   })
 })
