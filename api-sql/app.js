@@ -2,39 +2,32 @@ const express = require('express')
 const app = express()
 const port = 3000
 const mssql = require('mssql/msnodesqlv8');
-// const mysql = require('mysql');
-
-// const con = new mysql.createConnection({
-//   host: 'localhost',
-//   user:'root',
-//   password: '',
-//   database: 'dbplaylist'
-// })
-
-// app.get('/dados', (req, res)=>{
-//   con.query('SELECT * FROM tbmusico',(err, result) => {
-//     if(err) {
-//       throw err;
-//     }
-//     res.status(200).send(result);
-//   });
-// })
 
 app.use(express.json());
 // app.use(express.urlencode())
 
 const conn = new mssql.ConnectionPool({
     driver: "msnodesqlv8",
-    // server: 'SQLEXPRESS',
-    // database: 'loja',
-    // user: 'Marcilio',
-    // password: ''
     server: 'localhost',
+    // database: 'loja',
+    user: 'Marcilio',
+    password: '',
+    // server: 'localhost',
     database: 'WebBackEnd',
-    user: 'sa',
-    password: 'Sql2@19'
+    // user: 'sa',
+    // password: 'Sql2@19'
 })
 
+
+app.get('/con', (req,res) => {
+  try{
+    if(conn){
+      res.status(200).send('Conectado');
+    }
+  }catch(e){
+    res.status(404).send(`Falha ao conectar. ${e.message}`);
+  }
+})
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -98,9 +91,8 @@ app.put('/cliente/:id', (req, res) => {
     email
   } = req.body;
   conn.connect().then((pool) => {
-    const queryStr = `UPDATE Clentes SET Codigo = ${codigo}, 
+    const queryStr = `UPDATE Clientes SET Codigo = ${codigo},
     Nome = ${nome}, Email = ${email} WHERE Codigo = ${codigo}`
-    // const queryStr = 'SELECT * FROM produto'
     pool.query(queryStr).then((rows) => {
       if(rows.recordset.length > 0){
         res.send(rows.recordset[0]);
@@ -111,25 +103,6 @@ app.put('/cliente/:id', (req, res) => {
   })
 })
 
-// app.get('/clientes', (req, res)=>{
-//   conn.connect().query('SELECT * FROM clientes',(err, result) => {
-//     if(err) {
-//       throw err;
-//     }
-//     res.status(200).send(result);
-//   });
-// })
-
-// app.get('/dados', (req, res)=>{
-//   con.query('SELECT * FROM tbmusico',(err, result) => {
-//     if(err) {
-//       throw err;
-//     }
-//     res.status(200).send(result);
-//   });
-// })
-
-
 app.listen(port, () => {
-  console.log(`Example app listening on http://localhost:${port}/`)
+  console.log(`Example app listening on http://localhost:${port}/`);
 })

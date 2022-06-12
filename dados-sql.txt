@@ -5,3 +5,36 @@ autenticação do sql server
 sa
 
 Sql2@19
+
+#view
+CREATE OR REPLACE VIEW vw_consulta_id
+AS
+	SELECT * FROM vw_consulta
+    WHERE Codigo = 1
+
+#procedure
+procedure de consulta a lista de músicos
+DELIMITER $$
+CREATE PROCEDURE sp_consulta_musicos()
+BEGIN	
+	SELECT * FROM vw_consulta;
+END $$
+DELIMITER ;
+
+#procedure
+DELIMITER $$
+CREATE PROCEDURE sp_consulta_musicos_id()
+BEGIN	
+	SELECT * FROM vw_consulta_id;
+END $$
+DELIMITER ;
+
+#função
+DELIMITER $$
+CREATE FUNCTION sp_consulta_musicos_id(codigo INT)
+RETURNS VARCHAR DETERMINISTIC
+BEGIN	
+	SELECT * FROM vw_consulta_id 
+    WHERE Codigo = codigo;
+END $$
+DELIMITER ;

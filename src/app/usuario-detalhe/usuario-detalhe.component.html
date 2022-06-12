@@ -1,26 +1,31 @@
-<a routerLink="/listagem">Voltar</a>
+<div class="card">
+  <div class="card-container blue-container">
+    <br>
+    <p-fieldset legend="ID do usuário" [collapsed]="true" [toggleable]="true">
+      {{ id }}
+    </p-fieldset>
+    <br>
+    <p-fieldset legend="DADOS do usuário (json)" [collapsed]="true" [toggleable]="true">
+      {{ usuario | json }}
+    </p-fieldset>
+    <br>
 
-<p>
-  Usuario selecionado: {{ id }}
-</p>
-
-<p>
-  Usuario selecionado: {{ usuario | json }}
-</p>
-
-<table>
-  <tr>
-      <th>ID</th>
-      <th>Email</th>
-      <th>First_Name</th>
-      <th>Last_Name</th>
-      <th>Avatar</th>
-  </tr>
-  <tr>
-      <td>{{usuario?.id}}</td>
-      <td>{{usuario?.email}}</td>
-      <td>{{usuario?.first_name}}</td>
-      <td>{{usuario?.last_name}}</td>
-      <td><img src="{{usuario?.avatar}}" alt="avatar"></td>
-  </tr>
-</table>
+    <p-card header="{{usuario?.first_name}}" subheader="{{usuario?.last_name}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
+      <ng-template pTemplate="header">
+        <img src="{{usuario?.avatar}}" alt="avatar">
+      </ng-template>
+      <span>
+        <b>Id: </b> {{usuario?.id}}
+      </span>
+      <br>
+      <span>
+        <b>E-mail: </b> {{usuario?.email}}
+      </span>
+      <br><br>
+      <span>
+        <button pButton class="button" routerLink="/listagem">Voltar</button>
+      </span>
+      
+    </p-card>
+  </div>
+</div>

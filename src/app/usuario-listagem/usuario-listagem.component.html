@@ -1,4 +1,3 @@
-<button pButton (click)="onLogoff()">Sair</button>
 <p-table [value]="usuarios" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]" selectionMode="single"
 [(selection)]="usuarioSelecionado" dataKey="id" (onRowSelect)="onRowSelect($event)">
@@ -9,6 +8,7 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
           <th>First_Name</th>
           <th>Last_Name</th>
           <th>Avatar</th>
+          <th><button pButton (click)="onLogoff()">Sair</button></th>
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-usuario>
@@ -19,6 +19,28 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
           <td>{{usuario.first_name}}</td>
           <td>{{usuario.last_name}}</td>
           <td>{{usuario.avatar}}</td>
+      </tr>
+  </ng-template>
+</p-table>
+
+<p-table [value]="listas" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]" selectionMode="single">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Codigo</th>
+          <th>Banda</th>
+          <th>Salario</th>
+          <th>Vocal</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-lista>
+    <!--Faltou apenas o [] - properrty bind-->
+      <tr [pSelectableRow]="lista">
+          <td>{{lista.Codigo}}</td>
+          <td>{{lista.Musico}}</td>
+          <td>{{lista.Banda}}</td>
+          <td>{{lista.Salario}}</td>
+          <td>{{lista.Canta}}</td>
       </tr>
   </ng-template>
 </p-table>
