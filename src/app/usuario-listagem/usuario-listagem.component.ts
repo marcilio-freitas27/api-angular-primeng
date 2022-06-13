@@ -31,6 +31,11 @@ export class UsuarioListagemComponent implements OnInit {
     this.usuario.getTudo().subscribe({
       next: (retorno: Lista[]) => this.listas = retorno
     });
+
+    //pegando do mssql 
+    this.usuario.getTudoMssql().subscribe({
+      next: (retorno: any[]) => this.listas = retorno
+    });
   }
 
   //acessando rota de uma página(componente) através do router.navigate

@@ -2,20 +2,22 @@ const express = require('express')
 const app = express()
 const port = 3000
 const mssql = require('mssql/msnodesqlv8');
+const cors = require('cors');
 
 app.use(express.json());
 // app.use(express.urlencode())
+
+app.use(cors());
 
 const conn = new mssql.ConnectionPool({
     driver: "msnodesqlv8",
     server: 'localhost',
     // database: 'loja',
-    user: 'Marcilio',
+    // user: 'Marcilio',
     password: '',
-    // server: 'localhost',
     database: 'WebBackEnd',
-    // user: 'sa',
-    // password: 'Sql2@19'
+    user: 'sa',
+    password: 'Sql2@19'
 })
 
 

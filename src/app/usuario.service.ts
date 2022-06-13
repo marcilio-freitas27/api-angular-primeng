@@ -10,9 +10,11 @@ import { Lista } from './model/lista';
 export class UsuarioService {
   url: string;
   minhaUrl: string;
+  outraUrl: string;
   constructor(private http:HttpClient) {
     this.url = "https://reqres.in/api/users";
     this.minhaUrl = "http://localhost:3000/dados";
+    this.outraUrl = "http://localhost:3000/cliente";
   }
 
   getAll(): Observable<Usuario[]>{
@@ -32,5 +34,10 @@ export class UsuarioService {
     return this.http.get<Lista>(this.minhaUrl).pipe(
       map((retorno: any) => retorno[0])
     );
+  }
+
+  //pegando dados do banco
+  getTudoMssql(): Observable<any[]>{
+    return this.http.get<any>(this.outraUrl)
   }
 }

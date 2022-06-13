@@ -32,6 +32,7 @@ import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ButtonModule,
     TableModule,
+    //importar o http
     HttpClientModule,
     InputTextModule,
     PasswordModule,
