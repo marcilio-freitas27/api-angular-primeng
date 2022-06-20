@@ -17,10 +17,12 @@ export class UsuarioListagemComponent implements OnInit {
   LoginService: any;
   //lista do banco
   listas: Lista[];
+  teste: any[];
 
   constructor(private usuario: UsuarioService, private router:Router, private loginService: LoginService) {
     this.usuarios = [];
     this.listas = [];
+    this.teste = [];
   }
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class UsuarioListagemComponent implements OnInit {
 
     //pegando do mssql 
     this.usuario.getTudoMssql().subscribe({
-      next: (retorno: any[]) => this.listas = retorno
+      next: (retorno: any[]) => this.teste = retorno
     });
   }
 
