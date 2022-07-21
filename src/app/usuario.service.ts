@@ -15,6 +15,7 @@ export class UsuarioService {
     this.url = "https://reqres.in/api/users";
     this.minhaUrl = "http://localhost:3000/dados";
     this.outraUrl = "http://localhost:3000/cliente";
+    
   }
 
   getAll(): Observable<Usuario[]>{
