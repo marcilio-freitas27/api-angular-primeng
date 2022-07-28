@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class LoginService {
   jwtauth: string;
   constructor(private http: HttpClient) { 
-    this.jwtauth = "http://localhost:3000/cliente";
+    this.jwtauth = "http://localhost:2000";
   }
 
   onLogin(usuario: string, senha: string): boolean {
@@ -19,8 +19,10 @@ export class LoginService {
     return false;
   }
 
-  login(): Observable<any[]>{
-    return this.http.post<any>(`${this.jwtauth}/login`);
+  getLogin(): Observable<any[]>{
+    return this.http.get<any>(`${this.jwtauth}`).pipe(
+      map((retorno: any) => retorno.data)
+    );
   }
 
   isAuthenticated(): boolean{

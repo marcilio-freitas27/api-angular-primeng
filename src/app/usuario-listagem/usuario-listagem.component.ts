@@ -18,11 +18,17 @@ export class UsuarioListagemComponent implements OnInit {
   //lista do banco
   listas: Lista[];
   teste: any[];
+  login: any[];
 
-  constructor(private usuario: UsuarioService, private router:Router, private loginService: LoginService) {
+  constructor(
+    private usuario: UsuarioService, 
+    private router: Router, 
+    private loginService: LoginService
+    ) {
     this.usuarios = [];
     this.listas = [];
     this.teste = [];
+    this.login = [];
   }
 
   ngOnInit(): void {
@@ -38,6 +44,10 @@ export class UsuarioListagemComponent implements OnInit {
     this.usuario.getTudoMssql().subscribe({
       next: (retorno: any[]) => this.teste = retorno
     });
+
+    this.loginService.getLogin().subscribe({
+      next: (retorno: any[]) => this.login = retorno
+    })
   }
 
   //acessando rota de uma página(componente) através do router.navigate
@@ -45,8 +55,8 @@ export class UsuarioListagemComponent implements OnInit {
     this.router.navigate(['/detalhe', this.usuarioSelecionado!.id]);
   }
 
-  onLogoff(): void{
-    if(this.loginService.onLogout()){
+  onLogoff(): void {
+    if (this.loginService.onLogout()) {
       this.router.navigate(['/login']);
     }
   }
