@@ -19,6 +19,7 @@ export class UsuarioListagemComponent implements OnInit {
   listas: Lista[];
   teste: any[];
   login: any[];
+  clientes: any[];
 
   constructor(
     private usuario: UsuarioService, 
@@ -29,6 +30,7 @@ export class UsuarioListagemComponent implements OnInit {
     this.listas = [];
     this.teste = [];
     this.login = [];
+    this.clientes = [];
   }
 
   ngOnInit(): void {
@@ -47,6 +49,10 @@ export class UsuarioListagemComponent implements OnInit {
 
     this.loginService.getLogin().subscribe({
       next: (retorno: any[]) => this.login = retorno
+    })
+
+    this.loginService.getLogin().subscribe({
+      next: (retorno: any[]) => this.clientes = retorno
     })
   }
 

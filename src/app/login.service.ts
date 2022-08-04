@@ -20,7 +20,13 @@ export class LoginService {
   }
 
   getLogin(): Observable<any[]>{
-    return this.http.get<any>(`${this.jwtauth}`).pipe(
+    return this.http.get<any>(`${this.jwtauth}/login`).pipe(
+      map((retorno: any) => retorno.data)
+    );
+  }
+
+  getClientes(): Observable<any[]>{
+    return this.http.get<any>(`${this.jwtauth}/clientes`).pipe(
       map((retorno: any) => retorno.data)
     );
   }
