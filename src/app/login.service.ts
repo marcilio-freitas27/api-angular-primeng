@@ -7,11 +7,8 @@ import { map, Observable } from 'rxjs';
 })
 export class LoginService {
   jwtauth: string;
-  setSession: any;
-  postId: any;
   constructor(private http: HttpClient) {
-    this.jwtauth = 'http://localhost:2000';
-    this.setSession = '';
+    this.jwtauth = "http://localhost:3000/cliente";
   }
 
   onLogin(usuario: string, senha: string): boolean {
@@ -22,23 +19,12 @@ export class LoginService {
     return false;
   }
 
-  login(usuario: any, senha: any): Observable<boolean> {
-    return this.http
-      .post<{token: string}>(`${this.jwtauth}/login`, { usuario: usuario , senha: senha })
-      .pipe(
-        map((result: { token: string; }) => {
-          localStorage.setItem('access_token', result.token);
-          return true;
-        }))
-
+  login(): Observable<any[]>{
+    return this.http.post<any>(`${this.jwtauth}/login`);
   }
 
-  getPostId(): any{
-    return this.postId;
-  }
-
-  isAuthenticated(): boolean {
-    if (localStorage.getItem('usuario')) {
+  isAuthenticated(): boolean{
+    if (localStorage.getItem('usuario')){
       return true;
     }
     return false;

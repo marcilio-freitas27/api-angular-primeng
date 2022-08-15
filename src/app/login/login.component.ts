@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
     if (this.loginService.onLogin(this.usuario, this.senha)) {
       //redireciona para a raiz
       this.route.navigate(['/']);
-      this.showSuccess(`Bem vindo ${this.usuario}`);
-    } else {
+      this.showSuccess(`Bem vindo ${this.usuario}`);;
+    }else {
       this.showError('Usuario ou senha incorretos.');
     }
   }
