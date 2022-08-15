@@ -46,3 +46,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+
+# jwt
+api-jwt/node_modules
+api-jwt/.cache
+api-jwt/.config
+api-jwt/.upm
