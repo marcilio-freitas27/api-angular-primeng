@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/dados', (req, res)=>{
-  con.query('CALL sp_consulta_musicos()',(err, result) => {
+  con.query('SELECT * FROM tbmusico',(err, result) => {
     if(err) {
       throw err;
     }

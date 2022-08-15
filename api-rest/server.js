@@ -8,7 +8,7 @@ const app = express();
 var usuarios = [];
 
 // extenção do chrome: json-handle
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

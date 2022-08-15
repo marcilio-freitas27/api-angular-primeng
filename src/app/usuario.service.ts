@@ -11,11 +11,12 @@ export class UsuarioService {
   url: string;
   minhaUrl: string;
   outraUrl: string;
+  jwtauth:string;
   constructor(private http:HttpClient) {
     this.url = "https://reqres.in/api/users";
     this.minhaUrl = "http://localhost:3000/dados";
     this.outraUrl = "http://localhost:3000/cliente";
-    
+    this.jwtauth = "http://localhost:2000";
   }
 
   getAll(): Observable<Usuario[]>{
@@ -39,6 +40,10 @@ export class UsuarioService {
 
   //pegando dados do banco
   getTudoMssql(): Observable<any[]>{
-    return this.http.get<any>(this.outraUrl)
+    return this.http.get<any>(this.outraUrl);
+  }
+
+  login(): Observable<any[]>{
+    return this.http.get<any>(`${this.jwtauth}/clientes`);
   }
 }

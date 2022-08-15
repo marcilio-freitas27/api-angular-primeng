@@ -11,18 +11,23 @@ import { Lista } from '../model/lista';
   styleUrls: ['./usuario-listagem.component.css']
 })
 export class UsuarioListagemComponent implements OnInit {
-
+  postId: any;
   usuarios: Usuario[];
   usuarioSelecionado?: Usuario;
   LoginService: any;
   //lista do banco
   listas: Lista[];
   teste: any[];
+  novo:any[];
 
   constructor(private usuario: UsuarioService, private router:Router, private loginService: LoginService) {
     this.usuarios = [];
     this.listas = [];
     this.teste = [];
+    this.novo = [];
+    this.loginService.login('luiz', '123');
+    this.postId = this.loginService.getPostId();
+    console.log(this.postId);
   }
 
   ngOnInit(): void {
@@ -34,9 +39,17 @@ export class UsuarioListagemComponent implements OnInit {
       next: (retorno: Lista[]) => this.listas = retorno
     });
 
-    //pegando do mssql 
+    //pegando do mssql
     this.usuario.getTudoMssql().subscribe({
       next: (retorno: any[]) => this.teste = retorno
+    });
+
+    this.usuario.getTudoMssql().subscribe({
+      next: (retorno: any[]) => this.teste = retorno
+    });
+
+    this.usuario.login().subscribe({
+      next: (retorno: any[]) => this.novo = retorno
     });
   }
 
@@ -46,7 +59,7 @@ export class UsuarioListagemComponent implements OnInit {
   }
 
   onLogoff(): void{
-    if(this.loginService.onLogout()){
+    if(this.loginService.logout()){
       this.router.navigate(['/login']);
     }
   }

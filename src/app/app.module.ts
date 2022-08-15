@@ -9,6 +9,7 @@ import {PasswordModule} from 'primeng/password';
 import { MenubarModule } from 'primeng/menubar';
 import {CardModule} from 'primeng/card';
 import {FieldsetModule} from 'primeng/fieldset';
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +19,9 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
 
 @NgModule({
   declarations: [
@@ -43,6 +47,13 @@ import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
     // BrowserAnimationsModule no longer required
     ToastNoAnimationModule.forRoot(),
     ToastrModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["http://localhost:2000"],
+        disallowedRoutes: ["http://localhost:2000/login"],
+      },
+    }),
   ],
   bootstrap: [AppComponent]
 })
