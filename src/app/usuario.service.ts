@@ -1,5 +1,5 @@
 import { Usuario } from './usuario';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Lista } from './model/lista';
@@ -43,7 +43,14 @@ export class UsuarioService {
     return this.http.get<any>(this.outraUrl);
   }
 
-  login(): Observable<any[]>{
-    return this.http.get<any>(`${this.jwtauth}/clientes`);
+  getClientes(): Observable<any>{
+    let token = localStorage.getItem('access_token')!;
+    const headers = { 
+    'content-type': 'application/json',
+    'x-access-token': token
+    }
+    return this.http.get<any>(`${this.jwtauth}/clientes`,{
+      'headers': new HttpHeaders(headers)
+    });
   }
 }

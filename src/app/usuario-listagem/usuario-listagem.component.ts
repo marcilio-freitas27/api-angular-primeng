@@ -39,24 +39,24 @@ export class UsuarioListagemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.usuario.getAll().subscribe({
-      next: (retorno: Usuario[]) => this.usuarios = retorno
-    });
-    // pegando dados do banco
-    this.usuario.getTudo().subscribe({
-      next: (retorno: Lista[]) => this.listas = retorno
-    });
+    // this.usuario.getAll().subscribe({
+    //   next: (retorno: Usuario[]) => this.usuarios = retorno
+    // });
+    // // pegando dados do banco
+    // this.usuario.getTudo().subscribe({
+    //   next: (retorno: Lista[]) => this.listas = retorno
+    // });
 
-    //pegando do mssql
-    this.usuario.getTudoMssql().subscribe({
-      next: (retorno: any[]) => this.teste = retorno
-    });
+    // //pegando do mssql
+    // this.usuario.getTudoMssql().subscribe({
+    //   next: (retorno: any[]) => this.teste = retorno
+    // });
 
-    this.usuario.getTudoMssql().subscribe({
-      next: (retorno: any[]) => this.teste = retorno
-    });
+    // this.usuario.getTudoMssql().subscribe({
+    //   next: (retorno: any[]) => this.teste = retorno
+    // });
 
-    this.usuario.login().subscribe({
+    this.usuario.getClientes().subscribe({
       next: (retorno: any[]) => this.novo = retorno
     });
 
