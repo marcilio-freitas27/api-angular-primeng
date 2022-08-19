@@ -39,13 +39,13 @@ export class UsuarioService {
   }
 
   //pegando dados do banco
-  getTudoMssql(): Observable<any[]>{
+  getTudoMssql(): Observable<any>{
     return this.http.get<any>(this.outraUrl);
   }
 
   getClientes(): Observable<any>{
     let token = localStorage.getItem('access_token')!;
-    const headers = { 
+    const headers = {
     'content-type': 'application/json',
     'x-access-token': token
     }

@@ -33,7 +33,6 @@ export class UsuarioListagemComponent implements OnInit {
     this.novo = [];
     this.loginService.login('luiz', '123');
     this.postId = this.loginService.getPostId();
-    console.log(this.postId);
     this.login = [];
     this.clientes = [];
   }
@@ -57,7 +56,7 @@ export class UsuarioListagemComponent implements OnInit {
     // });
 
     this.usuario.getClientes().subscribe({
-      next: (retorno: any[]) => this.novo = retorno
+      next: (retorno: any) => this.novo = retorno
     });
 
     // this.loginService.getLogin().subscribe({

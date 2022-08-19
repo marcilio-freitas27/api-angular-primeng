@@ -1,7 +1,7 @@
-const express = require('express'); 
-const app = express(); 
+const express = require('express');
+const app = express();
 
-app.get('/',(req, res, next) => { 
+app.get('/clientes',(req, res, next) => {
     console.log("Retornou todos clientes!");
     res.json([{id:1,nome:'luiz'}]);
 })
